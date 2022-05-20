@@ -16,8 +16,8 @@
       <ion-item button>
         <ion-icon slot="start" :icon="timeOutline" />
         <ion-label class="ion-text-wrap">{{ $t("Run time") }}</ion-label>
-        <ion-label @click="() => isOpen = true" slot="end">{{ currentJob?.runTime ? getTime(currentJob?.runTime) : $t('Select run time') }}</ion-label>
-        <ion-modal :is-open="isOpen" @didDismiss="() => isOpen = false">
+        <ion-label @click="() => isDateTimeModalOpen = true" slot="end">{{ currentJob?.runTime ? getTime(currentJob?.runTime) : $t('Select run time') }}</ion-label>
+        <ion-modal :is-open="isDateTimeModalOpen" @didDismiss="() => isDateTimeModalOpen = false">
           <ion-content force-overscroll="false">
             <ion-datetime
               :min="minDateTime"
@@ -49,8 +49,8 @@
       <ion-item button>
         <ion-icon slot="start" :icon="timeOutline" />
         <ion-label class="ion-text-wrap">{{ $t("Run time") }}</ion-label>
-        <ion-label @click="() => isOpen = true" slot="end">{{ currentJob?.runTime ? getTime(currentJob.runTime) : $t('Select run time') }}</ion-label>
-        <ion-modal :is-open="isOpen" @didDismiss="() => isOpen = false">
+        <ion-label @click="() => isDateTimeModalOpen = true" slot="end">{{ currentJob?.runTime ? getTime(currentJob.runTime) : $t('Select run time') }}</ion-label>
+        <ion-modal :is-open="isDateTimeModalOpen" @didDismiss="() => isDateTimeModalOpen = false">
           <ion-content force-overscroll="false">
             <ion-datetime
               :min="minDateTime"
@@ -138,7 +138,7 @@ export default defineComponent({
   },
   data() {
     return {
-      isOpen: false,
+      isDateTimeModalOpen: false,
       lastShopifyOrderId: this.shopifyOrderId,
       minDateTime: DateTime.now().toISO(),
       jobEnums: JSON.parse(process.env?.VUE_APP_INITIAL_JOB_ENUMS as string) as any
